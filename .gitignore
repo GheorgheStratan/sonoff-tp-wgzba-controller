@@ -23,3 +23,5 @@ npm-debug.log*
 docs/screenshots/thermostat.jpg
 # Large source of the logo; the published versions are docs/logo*.png
 docs/screenshots/icon.png
+# Original phone photo: contains GPS/EXIF metadata. The published, cleaned copy is thermostat-wall.jpg
+docs/screenshots/real thermostat.jpeg
