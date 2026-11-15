@@ -62,6 +62,28 @@ Supported dongle types (the *Adapter type* setting in the app):
 
 The app has been tested with an `ember` dongle (EmberZNet 7.4.4). The other types use the same code paths as Zigbee2MQTT but have not been tested with this app.
 
+### Dongle USB driver
+
+The app talks to the dongle through a **serial (COM) port**. Inside most dongles there is a small USB-to-serial chip, and Windows needs a driver for it. Windows 10 and 11 usually install it automatically through Windows Update the first time you plug the dongle in, but not always.
+
+**Check if the driver is installed:**
+
+1. Plug in the dongle.
+2. Right-click the Start button → **Device Manager**.
+3. Open **Ports (COM & LPT)**. You should see an entry such as *USB-Enhanced-SERIAL CH9102 (COM5)* or *Silicon Labs CP210x USB to UART Bridge (COM3)*. The `COMx` number is the port to select in the app.
+4. If the dongle appears instead under **Other devices** with a yellow warning icon (often as *USB Serial* or *CP2102N USB to UART Bridge Controller*), the driver is missing. Install it from the table below.
+
+| USB-to-serial chip | Used in (examples) | Driver |
+|---|---|---|
+| WCH **CH9102F** / CH343 | SONOFF ZBDongle-E | [CH343SER](https://www.wch-ic.com/downloads/CH343SER_EXE.html) by WCH |
+| WCH **CH340** / CH341 | various cheap dongles | [CH341SER](https://www.wch-ic.com/downloads/CH341SER_EXE.html) by WCH |
+| Silicon Labs **CP2102N** / CP210x | SONOFF ZBDongle-P, Home Assistant Connect ZBT-1 | [CP210x VCP driver](https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers) by Silicon Labs |
+| Native USB (CDC) | ConBee II | none: built into Windows |
+
+If you are not sure which chip your dongle uses, look at the name shown in Device Manager, or at the *Hardware Ids* (right-click the device → *Properties* → *Details*): `VID_1A86` means WCH (CH340/CH9102), `VID_10C4` means Silicon Labs (CP210x).
+
+After installing a driver, unplug and re-plug the dongle, then press **Refresh** next to the serial port in the app.
+
 ## Installation
 
 1. Download **`Sonoff Thermostat Setup x.y.z.exe`** from the [Releases](../../releases) page.
@@ -72,7 +94,7 @@ To uninstall, use *Settings → Apps → Installed apps → Sonoff Thermostat*.
 
 ## First setup
 
-1. **Plug in the dongle** and start the app.
+1. **Plug in the dongle** and start the app. If the dongle does not show up as a COM port, install its driver first (see [Dongle USB driver](#dongle-usb-driver)).
 2. Open the **Network** page.
 3. Select the **serial port** of the dongle (for example `COM5`; press *Refresh* if it does not appear) and the **adapter type**, then press **Save & reconnect**.
 4. Set up the Zigbee network. There are two options:
@@ -151,7 +173,7 @@ src/
 | Problem | What to do |
 |---|---|
 | Status *Error* with `HOST_FATAL_ERROR` or the port does not open | The dongle is unplugged, or another program (Zigbee2MQTT…) is using it. Close the other program, re-plug the dongle and press *Connect*. |
-| The serial port is not in the list | Press *Refresh*. Check in *Device Manager → Ports (COM & LPT)* that Windows sees the dongle; some dongles need the CP210x or CH340 USB driver. |
+| The serial port is not in the list | Press *Refresh*. Check in *Device Manager → Ports (COM & LPT)* that Windows sees the dongle. If it is under *Other devices* with a warning icon, install the driver: see [Dongle USB driver](#dongle-usb-driver). |
 | Wrong adapter type | Check the chip of your dongle in the table above, choose the right type and press *Save & reconnect*. |
 | The thermostat does not pair | Make sure *Allow pairing* is active (the countdown is running) and repeat the pairing gesture on the thermostat. Move the dongle away from the PC with a USB extension cable to reduce interference. |
 | Something else | Open the **Log** page, or `app.log` in the data folder, and include it when you open an issue. |
