@@ -1,0 +1,19 @@
+# Dependencies: reinstall with "npm install"
+node_modules/
+
+# Build output: publish the installer (.exe) in GitHub Releases
+dist/
+
+# Personal Windows shortcuts
+*.lnk
+
+# OS / editor files
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
