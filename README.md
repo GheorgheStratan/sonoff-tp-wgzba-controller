@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo-animated.png" width="160" alt="Sonoff Thermostat logo">
+  <img src="docs/screenshots/thermostat-wall.jpg" width="420" alt="SONOFF TP-WGZBA thermostat mounted on the wall">
 </p>
 
 <h1 align="center">Sonoff Thermostat</h1>
@@ -44,15 +44,11 @@ Under the hood it uses the same libraries as Zigbee2MQTT ([zigbee-herdsman](http
 
 ## Requirements
 
-<img src="docs/screenshots/thermostat-wall.jpg" width="300" align="right" alt="SONOFF TP-WGZBA thermostat mounted on the wall">
-
 | What | Details |
 |---|---|
 | Computer | Windows 10 or 11 (64-bit) |
 | Thermostat | SONOFF **TP-WGZBA** (Thermostat Core) |
 | Zigbee USB dongle | See the table below |
-
-<br clear="right">
 
 Supported dongle types (the *Adapter type* setting in the app):
 
