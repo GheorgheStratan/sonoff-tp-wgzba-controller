@@ -4,6 +4,14 @@
 // ============================================================ state
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 const JS_DAY = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+// zigbee-herdsman adapter type -> chip family and common dongles that use it.
+const ADAPTERS = {
+  ember: 'Silicon Labs (SONOFF ZBDongle-E, Dongle Lite/Max MG24, ZBT-1)',
+  zstack: 'Texas Instruments (SONOFF ZBDongle-P, SMLIGHT SLZB-06)',
+  deconz: 'dresden elektronik (ConBee II/III, RaspBee II)',
+  zigate: 'ZiGate (USB, USB-TTL, PiZiGate)',
+  zboss: 'Nordic nRF52840 (experimental)',
+};
 const SETTINGS_SECTIONS = {
   comfort: ['hysteresis_low', 'hysteresis_high', 'local_temperature_calibration', 'frost_protection_temperature', 'open_window'],
   control: ['child_lock', 'temperature_sensor_select', 'external_temperature_input'],
@@ -824,7 +832,7 @@ RENDERERS.network = (root) => {
           return `<option value="${esc(p)}" ${p === c.port ? 'selected' : ''}>${esc(p)}${info?.manufacturer ? ` — ${esc(info.manufacturer)}` : ''}</option>`;
         }).join('')}</select><button class="btn small" data-ports>${esc(t('network.refreshPorts'))}</button></div></div>
       <div class="form-row"><label class="muted" for="adapterSel">${esc(t('network.adapter'))}</label>
-        <select id="adapterSel">${['ember', 'zstack', 'deconz', 'zigate', 'zboss'].map((a) => `<option ${a === c.adapter ? 'selected' : ''}>${a}</option>`).join('')}</select></div>
+        <select id="adapterSel">${Object.entries(ADAPTERS).map(([a, label]) => `<option value="${a}" ${a === c.adapter ? 'selected' : ''}>${a} — ${esc(label)}</option>`).join('')}</select></div>
       <div class="row" style="margin-top:6px">
         <button class="btn primary" data-saverestart ${c.hasNetwork ? '' : 'disabled'}>${esc(t('network.saveRestart'))}</button>
         ${st === 'running' || st === 'starting' ? `<button class="btn" data-disconnect>${esc(t('network.disconnect'))}</button>` : `<button class="btn" data-connect ${c.complete ? '' : 'disabled'}>${esc(t('network.connect'))}</button>`}

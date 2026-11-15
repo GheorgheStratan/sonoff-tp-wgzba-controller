@@ -5,6 +5,7 @@
   "description": "Desktop app to control the SONOFF TP-WGZBA thermostat through a Zigbee USB dongle",
   "main": "src/main/main.js",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder --win nsis",

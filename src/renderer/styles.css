@@ -55,7 +55,8 @@ button, input, select { font: inherit; color: inherit; }
   background: var(--surface); border-right: 1px solid var(--border); padding: 16px 12px;
 }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; padding: 4px 8px 18px; }
-.brand-icon { width: 24px; height: 24px; color: var(--heat); }
+.brand picture { display: flex; }
+.brand-icon { width: 64px; height: 64px; object-fit: contain; }
 .nav { display: flex; flex-direction: column; gap: 2px; }
 .nav button {
   display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; border: 0; border-radius: 8px;
@@ -202,6 +203,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 /* ---------- network & log ---------- */
 .form-row { display: grid; grid-template-columns: 160px 1fr; gap: 12px; align-items: center; margin-bottom: 12px; }
 .form-row select { max-width: 340px; }
+.form-row #adapterSel { max-width: 100%; width: 100%; min-width: 0; text-overflow: ellipsis; }
 .devices td { vertical-align: top; }
 .log-list { font-family: Consolas, "Cascadia Mono", monospace; font-size: 12px; line-height: 1.5; max-height: calc(100vh - 200px); overflow-y: auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
 .log-list div { white-space: pre-wrap; word-break: break-word; border-bottom: 1px solid var(--border); padding: 3px 0; }

@@ -17,3 +17,9 @@ desktop.ini
 # Logs
 *.log
 npm-debug.log*
+
+# Images not meant for the repository
+# (thermostat.jpg is an official SONOFF product photo: copyrighted, do not publish)
+docs/screenshots/thermostat.jpg
+# Large source of the logo; the published versions are docs/logo*.png
+docs/screenshots/icon.png
